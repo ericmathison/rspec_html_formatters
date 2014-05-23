@@ -5,8 +5,23 @@ require 'nokogiri'
 # http://emmanueloga.wordpress.com/2009/09/29/pretty-printing-xhtml-with-nokogiri-and-xslt/
 # Modifications by Eric Mathison
 
-class FormatHTML
-  def initialize(html)
+module FormatHtml
+  def display_formatted_html(html)
+    @html = Nokogiri(html)
+    process
+    puts @result
+  end
+
+  private
+
+  def process
+    @result = ''
+    set_xsl_var
+    xsl = Nokogiri::XSLT(@xsl)
+    @result = xsl.apply_to(@html).to_s
+  end
+
+  def set_xsl_var
     @xsl = <<-EOXSL
     <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
       <xsl:output method="xml" encoding="ISO-8859-1"/>
@@ -55,20 +70,7 @@ class FormatHTML
       </xsl:template>
     </xsl:stylesheet>
     EOXSL
-
-    @result = ''
-    @html = Nokogiri(html)
-    process
-  end
-
-  def display
-    puts @result
-  end
-
-  private
-
-  def process
-    xsl = Nokogiri::XSLT(@xsl)
-    @result = xsl.apply_to(@html).to_s
   end
 end
+
+RSpec.configure { |config| config.include FormatHtml }

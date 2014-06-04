@@ -1,6 +1,12 @@
 require 'rexml/document'
 
 module FormatHtml
+  def formatted_html(html)
+    @html = html
+    process
+    @result
+  end
+
   def display_formatted_html(html)
     @html = html
     process

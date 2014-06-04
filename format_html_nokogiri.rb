@@ -6,6 +6,12 @@ require 'nokogiri'
 # Modifications by Eric Mathison
 
 module FormatHtml
+  def formatted_html(html)
+    @html = Nokogiri(html)
+    process
+    @result
+  end
+
   def display_formatted_html(html)
     @html = Nokogiri(html)
     process

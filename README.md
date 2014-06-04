@@ -2,10 +2,11 @@ rspec\_html\_formatters
 =======================
 
 These two scripts are for formatting html/xml in RSpec tests (presumably for
-exploration and debugging). They are intended to be copied into the lib
-directory instead of installed as a gem because sometimes when debugging
-somebody else's project, it's easier not to deal with the strict versioning
-rules that apply to applications using bundler.
+exploration and debugging). They are intended to be temporarily copied into the
+lib directory when needed instead of installed as a gem because sometimes when
+debugging somebody else's project (or even your own), it's easier not to have to
+add items to the Gemfile. That's especially true if you've already made edits
+to the Gemfile that you don't want to interfere with.
 
 Installation
 ------------

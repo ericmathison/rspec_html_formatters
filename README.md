@@ -21,3 +21,13 @@ Make sure to require the appropriate script in your test file. For example:
 argument containing html. The former will ouput formatted html while the latter
 will simply return it. If you are using Capybara, outputting the current page's
 html looks like this: `display_formatted_html(page.html)`.
+
+Which file to use
+----------------------------
+The advantage of using format\_html\_rexml.rb is that is uses REXML which is
+included in the standard library. So, if you are using Bundler, you won't get
+a complaint that REXML isn't in your Gemfile. It also won't include an xml
+header like the format\_html\_nokogiri.rb version will. REXML's parsing ability
+is not as robust as Nokogiri's though. Minor html syntax errors will cause an
+error and stop the html from being formatted. If you are looking for html syntax
+errors, that could be an advantage though.
